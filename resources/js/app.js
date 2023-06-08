@@ -1,2 +1,3 @@
 import "./bootstrap";
-import "./mobile";
+import "./user/mobile";
+import "./admin/main";
