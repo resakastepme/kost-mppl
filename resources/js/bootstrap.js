@@ -1,8 +1,10 @@
-// import bootstrap
-import "../assets/bootstrap/js/bootstrap.bundle";
+import "@/bootstrap/dist/js/bootstrap.bundle";
 
 import _ from "lodash";
 window._ = _;
+
+import jquery from "jquery";
+window.$ = jquery;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

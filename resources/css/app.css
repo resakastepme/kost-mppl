@@ -1,4 +1,4 @@
-@import "./user/style.css";
-@import "./admin/style.css";
-@import "../assets/bootstrap/css/bootstrap.min.css";
-@import "../assets/bootstrap-icons/bootstrap-icons.css";
+@import "./landing_page/style.css";
+@import "./dashboard/style.css";
+@import "@/bootstrap/dist/css/bootstrap.min.css";
+@import "@/bootstrap-icons/font/bootstrap-icons.css";

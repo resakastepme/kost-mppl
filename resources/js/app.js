@@ -1,3 +1,3 @@
 import "./bootstrap";
-import "./user/mobile";
-import "./admin/main";
+import "./landing_page/mobile";
+import "./dashboard/main";
