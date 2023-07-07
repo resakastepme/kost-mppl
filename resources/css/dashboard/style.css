@@ -693,13 +693,13 @@ h6 {
     font-weight: 600;
     color: #012970;
     transition: 0.3;
-    background: #f6f9ff;
     padding: 10px 15px;
     border-radius: 4px;
 }
 
 .sidebar-nav .nav-link.active {
     color: #4154f1;
+    background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link i {
@@ -1252,4 +1252,11 @@ h6 {
     text-align: center;
     font-size: 13px;
     color: #012970;
+}
+
+
+/* additional class & id */
+.search-items{
+    height: 40px;
+    padding: 5px;
 }

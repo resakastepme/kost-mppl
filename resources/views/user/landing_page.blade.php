@@ -1,7 +1,7 @@
 @props(['titlePage'])
 
-<x-partials.base titlePage="Dago">
-    <x-partials.landing_page._header />
+<x-partial.base titlePage="Dago">
+    <x-partial.landing_page._header />
 
     <!-- content -->
     <div id="content-dashboard">
@@ -83,5 +83,5 @@
         </div>
     </div>
 
-    <x-partials._footer />
-</x-partials.base>
+    <x-partial._footer />
+</x-partial.base>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,6 +42,14 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn ($value) => $value,
             set: fn ($value) => bcrypt($value)
+        );
+    }
+
+    public function scopeFilter(Builder $query, array $filter)
+    {
+        $query->when(
+            $filter['search'] ?? false,
+            fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%')
         );
     }
 }

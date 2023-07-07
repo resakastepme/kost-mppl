@@ -1,10 +1,10 @@
-<x-partials.base titlePage="Dashboard">
+<x-partial.base titlePage="Dashboard">
     <!-- ======= Header ======= -->
-    <x-partials.dashboard._header />
+    <x-partial.dashboard._header />
     <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-    <x-partials.dashboard._sidebar />
+    <x-partial.dashboard._sidebar />
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -400,10 +400,10 @@
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <x-partials._footer />
+    <x-partial._footer />
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
-</x-partials.base>
+</x-partial.base>
