@@ -33,12 +33,14 @@
                                     </div>
 
                                     @if ($users->count())
-                                        <x-table.table :headers="['#', 'Nama', 'Kamar', '']">
+                                        <x-table.table :headers="['#', 'Nama', 'KTP', '']">
                                             @foreach ($users as $user)
                                                 <tr>
                                                     <th class="w-auto" scope="row">#{{ $loop->iteration }}</th>
                                                     <td class="w-50">{{ $user->name }}</td>
-                                                    <td class="w-25">$147</td>
+                                                    <td class="w-25">
+                                                        <img src="{{ asset('storage/'.$user->ktp) }}" height="100%" width="50%" alt="foto ktp">
+                                                    </td>
                                                     <td class="d-flex gap-3 w-auto">
                                                         <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}"
                                                             class="btn btn-success">

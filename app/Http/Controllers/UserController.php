@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.user.index', ['users' => User::query()->filter(request(['search']))->latest('name')->get()]);
+        return view('admin.user.index', [
+            'users' => User::query()->filter(request(['search']))->getOccupants()->latest('name')->get()
+        ]);
     }
 
     public function create()
@@ -19,7 +22,8 @@ class UserController extends Controller
     public function store()
     {
         $attributes = array_merge($this->validate_user(), [
-            'isAdmin' => false
+            'isAdmin' => false,
+            'ktp' => request()->file('ktp')->store('images', 'public')
         ]);
 
         User::query()->create($attributes);
@@ -35,6 +39,8 @@ class UserController extends Controller
     public function update(User $user)
     {
         $attributes = $this->validate_user($user);
+
+        if ($attributes['ktp'] ?? false) $attributes['ktp'] = request()->file('ktp')->store('images');
 
         $user->update($attributes);
 
@@ -55,20 +61,29 @@ class UserController extends Controller
 
         return request()->validate(
             [
-                'name' => ['required'],
-                'email' => ['required'],
-                'password' => ['required']
+                'name' => ['required', 'max:200'],
+                'email' => ['required', Rule::unique('users', 'email'), 'max:100'],
+                'password' => ['required', 'min:5', 'max:50'],
+                'ktp' => ['image']
             ],
             [
                 'name' => [
                     'required' => ':attribute tidak boleh kosong',
+                    'max' => ':attribute maksimal 200 karakter',
                 ],
                 'email' => [
                     'required' => ':attribute tidak boleh kosong',
+                    'unique' => ':attribute sudah terdaftar',
+                    'max' => ':attribute maksimal 100 karakter',
                 ],
                 'password' => [
                     'required' => ':attribute tidak boleh kosong',
-                ]
+                    'min' => ':attribute minimal 5 karakter',
+                    'max' => ':attribute maksimal 50 karakter',
+                ],
+                'ktp' => [
+                    'required' => ':attribute harus berupa foto',
+                ],
             ],
         );
     }

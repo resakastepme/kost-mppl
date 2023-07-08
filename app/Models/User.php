@@ -26,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'ktp'
     ];
 
     /**
@@ -51,5 +52,15 @@ class User extends Authenticatable
             $filter['search'] ?? false,
             fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%')
         );
+    }
+
+    public function scopeGetOccupants(Builder $query)
+    {
+        $query->where('isAdmin', false);
+    }
+
+    public function scopeGetAdmin(Builder $query)
+    {
+        $query->where('isAdmin', true);
     }
 }
