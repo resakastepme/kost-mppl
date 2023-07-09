@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\User\ComplaintController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
