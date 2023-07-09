@@ -9,31 +9,19 @@
 
     <main id="main" class="main">
 
-        <a href="{{ route('admin.users') }}" class="btn btn-warning text-white">
+        <a href="{{ route('user.complaints') }}" class="btn btn-warning text-white">
             Back
         </a>
 
         <x-form.title>
-            Tambah Data User
+            Komplain
         </x-form.title>
 
         <div class="container d-flex justify-content-center align-items-center">
-            <form class="col-4" method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
+            <form class="col-4" method="POST" action="{{ route('user.complaint.store') }}">
                 @csrf
                 <x-form.wrapper class="mt-4">
-                    <x-form.input text="nama" name="name" type="text" />
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="email" type="email" />
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="password" type="password" />
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="ktp" type="file" />
+                    <x-form.textarea text="Keluhan" name="complain"/>
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">

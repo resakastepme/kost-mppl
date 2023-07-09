@@ -20,7 +20,7 @@
                                 <div class="card-body">
 
                                     <div class="d-lg-flex justify-content-lg-between">
-                                        <h5 class="card-title">User
+                                        <h5 class="card-title">Penghuni
                                             <span>|
                                                 <!-- Button trigger modal -->
                                                 <a class="btn btn-primary" href="{{ route('admin.user.create') }}">
@@ -38,8 +38,13 @@
                                                 <tr>
                                                     <th class="w-auto" scope="row">#{{ $loop->iteration }}</th>
                                                     <td class="w-50">{{ $user->name }}</td>
-                                                    <td class="w-25">
-                                                        <img src="{{ asset('storage/'.$user->ktp) }}" height="100%" width="50%" alt="foto ktp">
+                                                    <td class="w-25 text-center">
+                                                        @if ($user->ktp)
+                                                            <img src="{{ asset('storage/' . $user->ktp) }}" height="100%"
+                                                                width="50%" alt="foto ktp">
+                                                        @else
+                                                            Belum Di upload
+                                                        @endif
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto">
                                                         <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}"

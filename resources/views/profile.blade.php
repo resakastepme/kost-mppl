@@ -9,31 +9,21 @@
 
     <main id="main" class="main">
 
-        <a href="{{ route('admin.users') }}" class="btn btn-warning text-white">
-            Back
-        </a>
-
         <x-form.title>
-            Tambah Data User
+            Profile
         </x-form.title>
-
+        
         <div class="container d-flex justify-content-center align-items-center">
-            <form class="col-4" method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
+            <form class="col-4" method="POST" action="{{ route('profile.update',['user'=> $user->id]) }}" >
                 @csrf
+                @method('PATCH')
+                
                 <x-form.wrapper class="mt-4">
-                    <x-form.input text="nama" name="name" type="text" />
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="email" type="email" />
+                    <x-form.input name="email" type="email" :value="old('email',$user->email)"/>
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">
                     <x-form.input name="password" type="password" />
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="ktp" type="file" />
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">

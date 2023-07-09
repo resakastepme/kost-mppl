@@ -1,6 +1,6 @@
-@props(['name'])
+@props(['name','text'=>null])
 
-<x-form.label :name="$name"/>
+<x-form.label :name="$text ?? $name"/>
 
 <input name="{{ $name }}" {{ $attributes->merge(['class' => 'form-control']) }} {{ $attributes(['value'=> old($name)]) }} {{ $attributes }}>
 

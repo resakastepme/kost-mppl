@@ -46,6 +46,7 @@ class User extends Authenticatable
         );
     }
 
+    // scope
     public function scopeFilter(Builder $query, array $filter)
     {
         $query->when(
@@ -62,5 +63,21 @@ class User extends Authenticatable
     public function scopeGetAdmin(Builder $query)
     {
         $query->where('isAdmin', true);
+    }
+
+    // relations
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function room()
+    {
+        return $this->hasOne(Room::class);
+    }
+
+    public function complain()
+    {
+        return $this->hasMany(Complain::class);
     }
 }

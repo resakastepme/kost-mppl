@@ -17,10 +17,9 @@ return new class extends Migration
             Schema::create('complaints', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                $table->text('complain');
                 $table->date('date_reported');
-                $table->string('operator');
-                $table->enum('priority', [1, 2]);
-                $table->enum('status', ['Belum Diperbaiki', 'Sudah Diperbaiki'])->default('Belum Diperbaiki');
+                $table->enum('status', ['Belum Diproses', 'Diproses', 'Selesai'])->default('Belum Diproses');
             });
         }
     }

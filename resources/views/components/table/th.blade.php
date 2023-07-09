@@ -1,3 +1,3 @@
-<th scope="col">
+<th scope="col" class="text-center">
     {{ $slot }}
 </th>

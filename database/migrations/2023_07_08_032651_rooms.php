@@ -11,10 +11,9 @@ return new class extends Migration
         if (!Schema::hasTable('rooms')) {
             Schema::create('rooms', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
                 $table->integer('room_number')->unique();
-                $table->enum('type', ['regular', 'middle', 'luxury']);
-                $table->decimal('price');
+                $table->string('price');
                 $table->enum('status', ['Kosong', 'Disewa'])->default('kosong');
             });
         }

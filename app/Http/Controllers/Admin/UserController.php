@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 
@@ -23,8 +24,10 @@ class UserController extends Controller
     {
         $attributes = array_merge($this->validate_user(), [
             'isAdmin' => false,
-            'ktp' => request()->file('ktp')->store('images', 'public')
         ]);
+
+        if ($attributes['ktp'] ?? false) $attributes['ktp'] = request()->file('ktp')->store('images', 'public');
+
 
         User::query()->create($attributes);
 
@@ -40,7 +43,7 @@ class UserController extends Controller
     {
         $attributes = $this->validate_user($user);
 
-        if ($attributes['ktp'] ?? false) $attributes['ktp'] = request()->file('ktp')->store('images');
+        if ($attributes['ktp'] ?? false) $attributes['ktp'] = request()->file('ktp')->store('images', 'public');
 
         $user->update($attributes);
 

@@ -7,7 +7,15 @@
          <a href="#content-about">About</a>
      </div>
      <div class="right-side-navbar">
-         <a href="{{ route('login') }}" id="login-button">Login</a>
+        {{-- jika user sudah login --}}
+        @auth
+            <a class="btn btn-primary text-white" href="{{ route('dashboard') }}">Menuju Dashboard</a>
+        @endauth
+
+        {{-- jika user belum login --}}
+        @guest
+        <a href="{{ route('login') }}" id="login-button">Login</a>
+        @endguest
      </div>
  </nav>
  <!-- sidebar for mobile and tablet -->
