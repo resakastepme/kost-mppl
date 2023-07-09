@@ -65,8 +65,8 @@ class UserController extends Controller
         return request()->validate(
             [
                 'name' => ['required', 'max:200'],
-                'email' => ['required', Rule::unique('users', 'email'), 'max:100'],
-                'password' => ['required', 'min:5', 'max:50'],
+                'email' => ['required', Rule::unique('users', 'email')->ignore($user), 'max:100'],
+                'password' => $user->exists ? ['max:50'] : ['required', 'min:5', 'max:50'],
                 'ktp' => ['image']
             ],
             [

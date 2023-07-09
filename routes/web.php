@@ -38,31 +38,44 @@ Route::middleware('auth')->group(function () {
     });
 
     // admin access
-    // users page
-    Route::controller(UserController::class)->group(function () {
-        Route::get('admin/users', 'index')->name('admin.users');
-        Route::get('admin/user/create', 'create')->name('admin.user.create');
-        Route::post('admin/user/store', 'store')->name('admin.user.store');
-        Route::get('admin/user/{user}/edit', 'edit')->name('admin.user.edit');
-        Route::patch('admin/user/{user}', 'update')->name('admin.user.update');
-        Route::delete('admin/user/{user}', 'destroy')->name('admin.user.destroy');
+    Route::prefix('admin')->group(function () {
+
+        // users page
+        Route::controller(UserController::class)->group(function () {
+            Route::get('users', 'index')->name('admin.users');
+            Route::get('user/create', 'create')->name('admin.user.create');
+            Route::post('user/store', 'store')->name('admin.user.store');
+            Route::get('user/{user}/edit', 'edit')->name('admin.user.edit');
+            Route::patch('user/{user}', 'update')->name('admin.user.update');
+            Route::delete('user/{user}', 'destroy')->name('admin.user.destroy');
+        });
+
+        // rooms page
+        Route::controller(RoomController::class)->group(function () {
+            Route::get('rooms', 'index')->name('admin.rooms');
+            Route::get('room/create', 'create')->name('admin.room.create');
+            Route::post('room/store', 'store')->name('admin.room.store');
+            Route::get('room/{room}/edit', 'edit')->name('admin.room.edit');
+            Route::patch('room/{room}', 'update')->name('admin.room.update');
+            Route::delete('room/{room}', 'destroy')->name('admin.room.destroy');
+            Route::patch('room/clear/{room}', 'clear_the_room')->name('admin.room.clear');
+        });
+
+        // complaints page
+        Route::controller(AdminComplaintController::class)->group(function () {
+            Route::get('complaints', 'index')->name('admin.complaints');
+            Route::patch('complaint/{complaint}/process', 'process')->name('admin.complaint.process');
+            Route::patch('complaint/{complaint}/finished', 'finished')->name('admin.complaint.finished');
+        });
+
+        // Invoices page
+        Route::controller(AdminComplaintController::class)->group(function () {
+
+        });
+
     });
 
-    // rooms page
-    Route::controller(RoomController::class)->group(function () {
-        Route::get('admin/rooms', 'index')->name('admin.rooms');
-        Route::get('admin/room/create', 'create')->name('admin.room.create');
-        Route::post('admin/room/store', 'store')->name('admin.room.store');
-        Route::get('admin/room/{room}/edit', 'edit')->name('admin.room.edit');
-        Route::patch('admin/room/{room}', 'update')->name('admin.room.update');
-        Route::delete('admin/room/{room}', 'destroy')->name('admin.room.destroy');
-        Route::patch('admin/room/clear/{room}', 'clear_the_room')->name('admin.room.clear');
-    });
 
-    // complaints page
-    Route::controller(AdminComplaintController::class)->group(function () {
-        Route::get('admin/complaints', 'index')->name('admin.complaints');
-        Route::patch('admin/complaint/{complaint}/process', 'process')->name('admin.complaint.process');
-        Route::patch('admin/complaint/{complaint}/finished', 'finished')->name('admin.complaint.finished');
-    });
+
+
 });

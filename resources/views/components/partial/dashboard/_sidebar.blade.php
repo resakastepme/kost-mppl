@@ -39,6 +39,15 @@
                 </a>
             </li>
             <!-- End Komplain Nav -->
+
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ request()->route()->getName() == 'admin.invoices'? 'active': '' }}"
+                    href="{{ route('admin.invoices') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Tagihan</span>
+                </a>
+            </li> --}}
+            <!-- End Komplain Nav -->
         @else
 
         {{-- hak akses user --}}
