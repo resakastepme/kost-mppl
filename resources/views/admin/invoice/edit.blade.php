@@ -9,21 +9,28 @@
 
     <main id="main" class="main">
 
+        <a href="{{ route('admin.invoices') }}" class="btn btn-warning text-white">
+            Back
+        </a>
+
         <x-form.title>
-            Profile
+            Ubah Data Tagihan
         </x-form.title>
 
         <div class="container d-flex justify-content-center align-items-center">
-            <form class="col-4" method="POST" action="{{ route('profile.update',['user'=> $user->id]) }}" >
+            <form class="col-4" method="POST" action="{{ route('admin.invoice.update', ['invoice' => $invoice->id]) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="email" type="email" :value="old('email',$user->email)" disable/>
-                </x-form.wrapper>
+                {{-- <x-form.wrapper class="mt-4">
+                    <x-form.input text="Jatuh Tempo" name="due_date" type="date" :value="old('due_date', $invoice->due_date)" />
+                </x-form.wrapper> --}}
 
                 <x-form.wrapper class="mt-4">
-                    <x-form.input name="password" type="password" />
+                    <select name="room_id" class="form-select w-100">
+                        <x-form.room-dropdown/>
+                    </select>
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">

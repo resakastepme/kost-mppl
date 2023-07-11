@@ -33,7 +33,7 @@
 
                 <x-form.wrapper class="mt-4">
                     <select name="user_id" class="form-select w-100">
-                        <x-form.occupant-dropdown />
+                        <x-form.occupant-dropdown :selectedUser="$room->user_id"/>
                     </select>
                 </x-form.wrapper>
                 <x-form.wrapper class="mt-4">

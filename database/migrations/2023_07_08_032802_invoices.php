@@ -19,6 +19,7 @@ return new class extends Migration
                 $table->foreignId('room_id')->constrained()->cascadeOnDelete();
                 $table->foreignId('user_id')->constrained()->cascadeOnDelete();
                 $table->date('due_date');
+                $table->string('path')->nullable();
                 $table->enum('status', ['Belum Dibayar', 'Sudah Dibayar'])->default('Belum Dibayar');
             });
         }

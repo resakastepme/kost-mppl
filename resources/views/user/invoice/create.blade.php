@@ -9,21 +9,19 @@
 
     <main id="main" class="main">
 
+        <a href="{{ route('user.complaints') }}" class="btn btn-warning text-white">
+            Back
+        </a>
+
         <x-form.title>
-            Profile
+            Komplain
         </x-form.title>
 
         <div class="container d-flex justify-content-center align-items-center">
-            <form class="col-4" method="POST" action="{{ route('profile.update',['user'=> $user->id]) }}" >
+            <form class="col-4" method="POST" action="{{ route('user.complaint.store') }}">
                 @csrf
-                @method('PATCH')
-
                 <x-form.wrapper class="mt-4">
-                    <x-form.input name="email" type="email" :value="old('email',$user->email)" disable/>
-                </x-form.wrapper>
-
-                <x-form.wrapper class="mt-4">
-                    <x-form.input name="password" type="password" />
+                    <x-form.textarea text="Keluhan" name="complain"/>
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">

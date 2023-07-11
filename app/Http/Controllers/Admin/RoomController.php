@@ -21,7 +21,7 @@ class RoomController extends Controller
 
     public function store()
     {
-        $attributes = $this->validate_user();
+        $attributes = $this->validate_room();
 
 
         if ($attributes['user_id'] ?? false) {
@@ -42,7 +42,7 @@ class RoomController extends Controller
 
     public function update(Room $room)
     {
-        $attributes = $this->validate_user($room);
+        $attributes = $this->validate_room($room);
 
         if ($attributes['user_id'] ?? false) {
             $attributes['status'] = 'Disewa';
@@ -74,7 +74,7 @@ class RoomController extends Controller
         return redirect(route('admin.rooms'))->with('success', 'Data berhasil diedit');
     }
 
-    protected function validate_user(?Room $room = null): array
+    protected function validate_room(?Room $room = null): array
     {
         $room ??= new Room();
 

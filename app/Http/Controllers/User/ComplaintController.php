@@ -22,7 +22,7 @@ class ComplaintController extends Controller
     public function store()
     {
         $attributes = array_merge(
-            $this->validate_user(),
+            $this->validate_complaint(),
             [
                 'user_id' => auth()->id(),
                 'date_reported' => date('Y-m-d'),
@@ -42,7 +42,7 @@ class ComplaintController extends Controller
 
     public function update(Complaint $complaint)
     {
-        $attributes = $this->validate_user($complaint);
+        $attributes = $this->validate_complaint($complaint);
 
         $complaint->update($attributes);
 
@@ -57,7 +57,7 @@ class ComplaintController extends Controller
         return back()->with('success', 'Data terhapus');
     }
 
-    protected function validate_user(?Complaint $complaint = null): array
+    protected function validate_complaint(?Complaint $complaint = null): array
     {
         $complaint ??= new Complaint();
 

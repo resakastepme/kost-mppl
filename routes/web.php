@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\User\ComplaintController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'user.landing_page')->name('user.landing_page');
@@ -35,6 +37,12 @@ Route::middleware('auth')->group(function () {
         Route::get('user/complaint/{complaint}/edit', 'edit')->name('user.complaint.edit');
         Route::patch('user/complaint/{complaint}', 'update')->name('user.complaint.update');
         Route::delete('user/complaint/{complaint}', 'destroy')->name('user.complaint.destroy');
+    });
+    // Invoices Page
+    Route::controller(InvoiceController::class)->group(function () {
+        Route::get('user/invoices', 'index')->name('user.invoices');
+        Route::get('user/invoice/{invoice}/edit', 'edit')->name('user.invoice.edit');
+        Route::patch('user/invoice/{invoice}', 'update')->name('user.invoice.update');
     });
 
     // admin access
@@ -69,13 +77,15 @@ Route::middleware('auth')->group(function () {
         });
 
         // Invoices page
-        Route::controller(AdminComplaintController::class)->group(function () {
-
+        Route::controller(AdminInvoiceController::class)->group(function () {
+            Route::get('invoices', 'index')->name('admin.invoices');
+            Route::get('invoice/create', 'create')->name('admin.invoice.create');
+            Route::post('invoice/store', 'store')->name('admin.invoice.store');
+            Route::get('invoice/{invoice}/edit', 'edit')->name('admin.invoice.edit');
+            Route::patch('invoice/{invoice}', 'update')->name('admin.invoice.update');
+            Route::delete('invoice/{invoice}', 'destroy')->name('admin.invoice.destroy');
+            Route::patch('invoice/{invoice}/process', 'payment_process')->name('admin.invoice.payment_process');
         });
 
     });
-
-
-
-
 });

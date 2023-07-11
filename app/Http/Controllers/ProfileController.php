@@ -34,15 +34,9 @@ class ProfileController extends Controller
 
         return request()->validate(
             [
-                'email' => ['required', Rule::unique('users', 'email')->ignore($user), 'max:100'],
                 'password' => ['min:5', 'max:50'],
             ],
             [
-                'email' => [
-                    'required' => ':attribute tidak boleh kosong',
-                    'unique' => ':attribute sudah terdaftar',
-                    'max' => ':attribute maksimal 100 karakter',
-                ],
                 'password' => [
                     'min' => ':attribute minimal 5 karakter',
                     'max' => ':attribute maksimal 50 karakter',

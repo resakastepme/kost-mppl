@@ -40,13 +40,13 @@
             </li>
             <!-- End Komplain Nav -->
 
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link {{ request()->route()->getName() == 'admin.invoices'? 'active': '' }}"
                     href="{{ route('admin.invoices') }}">
                     <i class="bi bi-grid"></i>
                     <span>Tagihan</span>
                 </a>
-            </li> --}}
+            </li>
             <!-- End Komplain Nav -->
         @else
 
@@ -56,6 +56,15 @@
                     href="{{ route('user.complaints') }}">
                     <i class="bi bi-grid"></i>
                     <span>Komplain</span>
+                </a>
+            </li>
+            <!-- End Komplain Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->route()->getName() == 'user.invoices'? 'active': '' }}"
+                    href="{{ route('user.invoices') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Tagihan</span>
                 </a>
             </li>
             <!-- End Komplain Nav -->
