@@ -30,7 +30,6 @@
                                             </span>
                                         </h5>
 
-                                        <x-form.search :action="route('admin.rooms')" />
                                     </div>
 
                                     @if ($invoices->count())
@@ -46,51 +45,20 @@
                                         ]">
                                             @foreach ($invoices as $invoice)
                                                 <tr>
-                                                    {{-- <th class="w-auto" scope="row">#{{ $invoice->room_number }}</th>
-                                                    <td class="w-50 ">{{ $invoice->user->name ?? '-' }}</td>
-                                                    <td class="w-25 ">{{ rupiah($invoice->price) }}</td>
-                                                    <td class="w-25 text-center">
-                                                        <span
-                                                            class="badge {{ $invoice->status == 'Diisi' ? 'bg-success' : 'bg-danger' }}">
-                                                            {{ $invoice->status }}
-                                                        </span>
-                                                    </td>
-                                                    <td class="d-flex gap-3 w-auto ">
-                                                        <a href="{{ route('admin.room.edit', ['room' => $invoice->id]) }}"
-                                                            class="btn btn-success">
-                                                            Ubah
-                                                        </a>
-
-                                                        <form
-                                                            action="{{ route('admin.room.destroy', ['room' => $invoice->id]) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-
-                                                            <x-form.submit-button class="btn-danger">
-                                                                Hapus
-                                                            </x-form.submit-button>
-                                                        </form>
-
-                                                        @if ($room->user_id ?? false)
-                                                            <form
-                                                                action="{{ route('admin.room.clear', ['room' => $room->id]) }}"
-                                                                method="POST">
-                                                                @method('PATCH')
-                                                                @csrf
-
-                                                                <x-form.submit-button class="btn-warning">
-                                                                    Kosongkan
-                                                                </x-form.submit-button>
-                                                            </form>
-                                                        @endif
-                                                    </td> --}}
                                                     <td class="text-center"> {{ $loop->iteration }} </td>
                                                     <td class="text-center"> {{ $invoice->room->room_number }} </td>
                                                     <td class="text-center"> {{ $invoice->user->name }} </td>
-                                                    <td class="text-center"> {{ $invoice->room->price }} </td>
-                                                    <td class="text-center"> {{ $invoice->due_date }} </td>
-                                                    <td class="text-center"> {{ $invoice->path ?? 'Belum Upload' }} </td>
+                                                    <td class="text-center"> {{ rupiah($invoice->room->price) }} </td>
+                                                    <td class="text-center">
+                                                        {{ date('d/m/Y', strtotime($invoice->due_date)) }} </td>
+                                                    <td class="text-center">
+                                                        @if ($invoice->path)
+                                                            <img src="{{ asset('storage/' . $invoice->path) }}"
+                                                                height="100%" width="50%" alt="foto ktp">
+                                                        @else
+                                                            Belum Di upload
+                                                        @endif
+                                                    </td>
                                                     <td class="text-center">
                                                         <span
                                                             class="badge {{ $invoice->status == 'Sudah Dibayar' ? 'bg-success' : 'bg-danger' }}">
@@ -98,23 +66,37 @@
                                                         </span>
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto ">
-                                                        <a href="{{ route('admin.invoice.edit', ['invoice' => $invoice->id]) }}"
-                                                            class="btn btn-success">
-                                                            Ubah
-                                                        </a>
+                                                        @if ($invoice->status != 'Sudah Dibayar')
+                                                            <a href="{{ route('admin.invoice.edit', ['invoice' => $invoice->id]) }}"
+                                                                class="btn btn-success">
+                                                                Ubah
+                                                            </a>
 
-                                                        <form
-                                                            action="{{ route('admin.invoice.destroy', ['invoice' => $invoice->id]) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
+                                                            <form
+                                                                action="{{ route('admin.invoice.destroy', ['invoice' => $invoice->id]) }}"
+                                                                method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
 
-                                                            <x-form.submit-button class="btn-danger">
-                                                                Hapus
-                                                            </x-form.submit-button>
-                                                        </form>
+                                                                <x-form.submit-button class="btn-danger">
+                                                                    Hapus
+                                                                </x-form.submit-button>
+                                                            </form>
 
-                                                  </td>
+                                                            @if ($invoice->path ?? false)
+                                                                <form
+                                                                    action="{{ route('admin.invoice.payment_process', ['invoice' => $invoice->id]) }}"
+                                                                    method="POST">
+                                                                    @method('PATCH')
+                                                                    @csrf
+
+                                                                    <x-form.submit-button class="btn-primary">
+                                                                        Verifikasi
+                                                                    </x-form.submit-button>
+                                                                </form>
+                                                            @endif
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </x-table.table>

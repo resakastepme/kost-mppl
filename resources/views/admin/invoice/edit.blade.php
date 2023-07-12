@@ -23,13 +23,13 @@
                 @csrf
                 @method('PATCH')
 
-                {{-- <x-form.wrapper class="mt-4">
+                <x-form.wrapper class="mt-4">
                     <x-form.input text="Jatuh Tempo" name="due_date" type="date" :value="old('due_date', $invoice->due_date)" />
-                </x-form.wrapper> --}}
+                </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">
                     <select name="room_id" class="form-select w-100">
-                        <x-form.room-dropdown/>
+                        <x-form.room-dropdown :selectedRoom="$invoice->id"/>
                     </select>
                 </x-form.wrapper>
 

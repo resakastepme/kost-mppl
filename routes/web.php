@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::get('profile/{user}/edit', 'edit')->name('profile.edit');
         Route::patch('profile/{user}', 'update')->name('profile.update');
     });
+
     // user access
     // complaints page
     Route::controller(ComplaintController::class)->group(function () {
@@ -47,7 +48,6 @@ Route::middleware('auth')->group(function () {
 
     // admin access
     Route::prefix('admin')->group(function () {
-
         // users page
         Route::controller(UserController::class)->group(function () {
             Route::get('users', 'index')->name('admin.users');
@@ -86,6 +86,5 @@ Route::middleware('auth')->group(function () {
             Route::delete('invoice/{invoice}', 'destroy')->name('admin.invoice.destroy');
             Route::patch('invoice/{invoice}/process', 'payment_process')->name('admin.invoice.payment_process');
         });
-
     });
 });

@@ -7,27 +7,23 @@ use App\Models\Room;
 
 class RoomDropdown extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
+    public function getRoom()
+    {
+        return Room::query()->with(['user'])
+            ->where('status', 'Disewa')
+            ->oldest('room_number')
+            ->get();
+    }
+
     public function render()
     {
-        return view('components.form.room-dropdown',['rooms'=>Room::query()->with(['user'])
-        ->where('status', 'Disewa')
-        ->oldest('room_number')
-        ->get()]
-    );
+        return view('components.form.room-dropdown', [
+            'rooms' => $this->getRoom()
+        ]);
     }
 }
