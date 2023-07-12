@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\InvoiceController as AdminInvoiceController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EmailTestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\User\ComplaintController;
@@ -88,3 +89,5 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+
+Route::get('/email', [EmailTestController::class, 'index']);

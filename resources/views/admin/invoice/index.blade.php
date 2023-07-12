@@ -116,6 +116,16 @@
     </main>
     <!-- End #main -->
 
+    <script type="text/javascript">
+
+        var email = "{{ Session('emailReport') }}";
+        var session = " {{ Session('success') }} ";
+
+        console.log(session);
+        console.log(email);
+
+    </script>
+
     <!-- ======= Footer ======= -->
     <x-partial._footer />
     <!-- End Footer -->
