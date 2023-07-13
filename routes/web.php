@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EmailTestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\User\ComplaintController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
 use App\Http\Controllers\Admin\UserController;
@@ -12,6 +13,11 @@ use App\Http\Controllers\User\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'user.landing_page')->name('user.landing_page');
+
+Route::get('/recovery-request', [RecoveryController::class, 'index']);
+Route::post('/recovery-process', [RecoveryController::class, 'store'])->name('recovery.store');
+Route::get('/change-password', [RecoveryController::class, 'recover'])->name('recovery.change');
+Route::post('/change-password/proccess', [RecoveryController::class, 'recoverp']);
 
 Route::middleware('guest')->controller(LoginController::class)->group(function () {
     Route::get('login', 'create')->name('login');
