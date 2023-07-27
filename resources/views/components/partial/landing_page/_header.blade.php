@@ -9,7 +9,7 @@
      <div class="right-side-navbar">
         {{-- jika user sudah login --}}
         @auth
-            <a class="btn btn-primary text-white" href="{{ route('dashboard') }}">Menuju Dashboard</a>
+            <a id="redirect-dashboard-button" href="{{ route('dashboard') }}">Dashboard</a>
         @endauth
 
         {{-- jika user belum login --}}

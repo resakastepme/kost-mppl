@@ -21,6 +21,8 @@
 
 <body class="d-flex flex-column min-vh-100">
     {{ $slot }}
+
+        <x-flash/>
 </body>
 
 </html>

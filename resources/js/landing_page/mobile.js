@@ -13,3 +13,6 @@ $("#openSideNav").on("click", function () {
 $(".closeSideNav").on("click", function () {
     closeNav();
 });
+
+// display message
+$(".messages").delay(2500).fadeOut("slow");

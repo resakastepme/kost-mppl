@@ -218,6 +218,23 @@
         box-shadow: 3px 6px black;
     }
 
+    #redirect-dashboard-button {
+        font-weight: 300;
+        display: inline-block;
+        height: 40px;
+        width: 150px;
+        border: 1px solid black;
+        border-radius: 7px;
+        text-align: center;
+        padding-top: 5px;
+        box-shadow: none;
+        transition: 0.5s box-shadow;
+    }
+
+    #redirect-dashboard-button:hover {
+        box-shadow: 3px 6px black;
+    }
+
     .center-side-navbar {
         display: flex;
         gap: 40px;

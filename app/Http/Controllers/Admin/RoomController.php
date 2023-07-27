@@ -92,6 +92,11 @@ class RoomController extends Controller
                     'required' => ':attribute tidak boleh kosong',
                 ],
             ],
+            [
+                'room_number' => 'No Ruangan',
+                'price' => 'Harga Kamar',
+                'user_id' => 'Penghuni',
+            ]
         );
     }
 }

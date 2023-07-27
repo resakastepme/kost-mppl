@@ -70,6 +70,9 @@ class ComplaintController extends Controller
                     'required' => ':attribute tidak boleh kosong',
                 ],
             ],
+            [
+                'complain' => 'Komplain',
+            ]
         );
     }
 }

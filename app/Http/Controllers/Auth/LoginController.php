@@ -18,7 +18,7 @@ class LoginController extends Controller
         $credentials = $request->validated();
 
         if (!auth()->attempt($credentials)) {
-            back()->with('failed', 'Email atau Password tidak sesuai');
+            return back()->with('failed', 'Email atau Password tidak sesuai');
         }
 
         $request->session()->regenerate();

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
-use App\Models\Room;
 
 class InvoiceController extends Controller
 {

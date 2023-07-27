@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Room;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 //PHPMailer
@@ -92,7 +90,7 @@ class InvoiceController extends Controller
     <tr>
         <td class="text-center"> ' . $room["room_number"] . ' </td>
         <td class="text-center"> ' . $email["name"] . ' </td>
-        <td class="text-center"> Rp. ' . number_format($room["price"],2,',','.') . ' </td>
+        <td class="text-center"> Rp. ' . number_format($room["price"], 2, ',', '.') . ' </td>
         <td class="text-center"> ' . date("d/m/Y", strtotime($attributes["due_date"])) . ' </td>
         <td class="text-center"> <span class="badge bg-danger"> ' . $attributes["status"] . ' </span> </td>
     </tr>
@@ -120,7 +118,7 @@ class InvoiceController extends Controller
             // echo '<script type="text/javascript"> console.log("Email Sent!"); </script>';
             // Log::info('Email Sent!');
             error_log('Email Sent!');
-            return redirect(route('admin.invoices'))->with('success' , 'Data berhasil disimpan')->with('emailReport', 'Email Sent!');
+            return redirect(route('admin.invoices'))->with('success', 'Data berhasil disimpan')->with('emailReport', 'Email Sent!');
         } else {
             // echo '<script type="text/javascript"> console.log("Email Failed!"); </script>';
             // Log::info('Email Failed!');
@@ -187,9 +185,8 @@ class InvoiceController extends Controller
                 ],
             ],
             [
-                'attributes' => [
-                    'room_id' => 'kamar',
-                ],
+                'room_id' => 'Kamar',
+                'due_date' => 'Tanggal Jatuh Tempo',
             ]
         );
     }

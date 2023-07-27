@@ -88,6 +88,9 @@ class UserController extends Controller
                     'required' => ':attribute harus berupa foto',
                 ],
             ],
+            [
+                'name' => 'Nama',
+            ]
         );
     }
 }

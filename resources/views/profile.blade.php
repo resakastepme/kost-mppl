@@ -19,7 +19,7 @@
                 @method('PATCH')
 
                 <x-form.wrapper class="mt-4">
-                    <x-form.input name="email" type="email" :value="old('email',$user->email)" disable/>
+                    <x-form.input name="email" type="email" :value="old('email',$user->email)" disabled/>
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">
