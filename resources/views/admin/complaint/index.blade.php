@@ -25,13 +25,21 @@
                                     </div>
 
                                     @if ($complaints->count())
-                                        <x-table.table :headers="['No', 'Komplain','Dikomplain Oleh', 'Tanggal Komplain', 'Status', '']">
+                                        <x-table.table :headers="[
+                                            'No',
+                                            'Komplain',
+                                            'Dikomplain Oleh',
+                                            'Tanggal Komplain',
+                                            'Status',
+                                            '',
+                                        ]">
                                             @foreach ($complaints as $complaint)
                                                 <tr>
                                                     <th class="w-auto" scope="row">#{{ $loop->iteration }}</th>
                                                     <td class="w-50 ">{{ $complaint->complain }}</td>
                                                     <td class="w-25 ">{{ $complaint->user->name }}</td>
-                                                    <td class="w-auto text-center">{{ date('d/m/Y',strtotime($complaint->date_reported)) }}</td>
+                                                    <td class="w-auto text-center">
+                                                        {{ date('d/m/Y', strtotime($complaint->date_reported)) }}</td>
                                                     <td class="w-auto text-center">
                                                         <span
                                                             class="badge {{ $complaint->status == 'Belum Diproses' ? 'bg-danger' : ($complaint->status == 'Diproses' ? 'bg-warning' : 'bg-success') }}">
@@ -39,31 +47,30 @@
                                                         </span>
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto ">
-                                                        @if ($complaint->status == "Belum Diproses")
-                                                        <form
-                                                        action="{{ route('admin.complaint.process', ['complaint' => $complaint->id]) }}"
-                                                        method="POST">
-                                                        @method('PATCH')
-                                                        @csrf
+                                                        @if ($complaint->status == 'Belum Diproses')
+                                                            <form
+                                                                action="{{ route('admin.complaint.process', ['complaint' => $complaint->id]) }}"
+                                                                method="POST">
+                                                                @method('PATCH')
+                                                                @csrf
 
-                                                        <x-form.submit-button class="btn-warning">
-                                                            Proses
-                                                        </x-form.submit-button>
-                                                    </form>
-                                                            
+                                                                <x-form.submit-button class="btn-warning">
+                                                                    Proses
+                                                                </x-form.submit-button>
+                                                            </form>
                                                         @endif
 
-                                                        @if ($complaint->status == "Diproses")
-                                                    <form
-                                                            action="{{ route('admin.complaint.finished', ['complaint' => $complaint->id]) }}"
-                                                            method="POST">
-                                                            @method('PATCH')
-                                                            @csrf
+                                                        @if ($complaint->status == 'Diproses' || $complaint->status == 'Selesai')
+                                                            <form
+                                                                action="{{ route('admin.complaint.finished', ['complaint' => $complaint->id]) }}"
+                                                                method="POST">
+                                                                @method('PATCH')
+                                                                @csrf
 
-                                                            <x-form.submit-button class="btn-success">
-                                                                Selesai
-                                                            </x-form.submit-button>
-                                                        </form>
+                                                                <x-form.submit-button class="btn-success {{ $complaint->status == 'Selesai' ? 'disabled' : ''}}">
+                                                                    Selesai
+                                                                </x-form.submit-button>
+                                                            </form>
                                                         @endif
                                                     </td>
                                                 </tr>

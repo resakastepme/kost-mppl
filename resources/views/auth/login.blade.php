@@ -6,7 +6,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                         @if (session()->has('failed'))
-                            <div class="messages alert alert-danger mb-3 w-100 text-center">
+                            <div class="alert alert-danger mb-3 w-100 text-center">
                                 <p>{{ session('failed') }}</p>
                             </div>
                         @endif

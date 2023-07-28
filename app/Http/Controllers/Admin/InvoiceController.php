@@ -69,7 +69,7 @@ class InvoiceController extends Controller
 
  <section class="portfolio bg-image bg-dark" id="forecast" style="background-image: url(https://cdn.discordapp.com/attachments/758697084039462913/1037737471259185152/PHPMAILER.jpg); background-size: cover; background-repeat: no-repeat; background-blend-mode: overlay;">
 
-<div>' . $spacing . $spacing . '‎ ‎ ‎<a href="http://127.0.0.1:8000/" target="blank" style="color: orange; font-size: 20px;">Kostify </a></div>
+<div>' . $spacing . $spacing . '‎ ‎ ‎<a href="' . route('user.landing_page') . '" target="blank" style="color: orange; font-size: 20px;">Kostify </a></div>
 
  <br>
 

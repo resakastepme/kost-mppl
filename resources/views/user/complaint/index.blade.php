@@ -54,23 +54,21 @@
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto ">
                                                         @if ($complaint->user_id === auth()->id())
-                                                            @if ($complaint->status == 'Belum Diproses')
-                                                                <a href="{{ route('user.complaint.edit', ['complaint' => $complaint->id]) }}"
-                                                                    class="btn btn-success">
-                                                                    Ubah
-                                                                </a>
+                                                        <a href="{{ route('user.complaint.edit', ['complaint' => $complaint->id]) }}"
+                                                            class="btn btn-success {{ $complaint->status !== 'Belum Diproses' ? 'disabled' : ''}}">
+                                                            Ubah
+                                                        </a>
 
-                                                                <form
-                                                                    action="{{ route('user.complaint.destroy', ['complaint' => $complaint->id]) }}"
-                                                                    method="POST">
-                                                                    @method('DELETE')
-                                                                    @csrf
+                                                        <form
+                                                            action="{{ route('user.complaint.destroy', ['complaint' => $complaint->id]) }}"
+                                                            method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
 
-                                                                    <x-form.submit-button class="btn-danger">
-                                                                        Batalkan
-                                                                    </x-form.submit-button>
-                                                                </form>
-                                                            @endif
+                                                            <x-form.submit-button class="btn-danger {{ $complaint->status !== 'Belum Diproses' ? 'disabled' : ''}}">
+                                                                Batalkan
+                                                            </x-form.submit-button>
+                                                        </form>
                                                         @endif
                                                     </td>
                                                 </tr>

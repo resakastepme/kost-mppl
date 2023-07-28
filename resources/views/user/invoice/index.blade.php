@@ -61,7 +61,7 @@
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto ">
                                                         <a href="{{ route('user.invoice.edit', ['invoice' => $invoice->id]) }}"
-                                                            class="btn btn-success">
+                                                            class="btn btn-success {{ $invoice->status === 'Sudah Dibayar' ? 'disabled' : '' }}">
                                                             {{ $invoice->path ?? false ? 'Ubah' : 'Upload Bukti' }}
                                                         </a>
                                                     </td>

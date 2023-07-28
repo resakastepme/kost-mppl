@@ -66,7 +66,7 @@
                                                         </span>
                                                     </td>
                                                     <td class="d-flex gap-3 w-auto ">
-                                                        @if ($invoice->status != 'Sudah Dibayar')
+                                                        @if ($invoice->status != 'Sudah Dibayar' && $invoice->path == null)
                                                             <a href="{{ route('admin.invoice.edit', ['invoice' => $invoice->id]) }}"
                                                                 class="btn btn-success">
                                                                 Ubah
@@ -82,6 +82,7 @@
                                                                     Hapus
                                                                 </x-form.submit-button>
                                                             </form>
+                                                            @endif
 
                                                             @if ($invoice->path ?? false)
                                                                 <form
@@ -90,12 +91,11 @@
                                                                     @method('PATCH')
                                                                     @csrf
 
-                                                                    <x-form.submit-button class="btn-primary">
+                                                                    <x-form.submit-button class="btn-primary {{ $invoice->status === 'Sudah Dibayar' ? 'disabled' : ''}}">
                                                                         Verifikasi
                                                                     </x-form.submit-button>
                                                                 </form>
                                                             @endif
-                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
