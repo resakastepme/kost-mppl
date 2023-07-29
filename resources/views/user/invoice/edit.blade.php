@@ -23,7 +23,7 @@
                 @method('PATCH')
 
                 <x-form.wrapper class="mt-4">
-                    <x-form.input text="Upload Bukti Pembayaran" name="path" type="file" />
+                    <x-form.input text="Upload Bukti Pembayaran" name="path" type="file" accept="image/*" />
                 </x-form.wrapper>
 
                 <x-form.wrapper class="mt-4">
