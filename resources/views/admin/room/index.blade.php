@@ -41,7 +41,7 @@
                                                     <td class="w-25 ">{{ rupiah($room->price) }}</td>
                                                     <td class="w-25 text-center">
                                                         <span
-                                                            class="badge {{ $room->status == 'Diisi' ? 'bg-success' : 'bg-danger' }}">
+                                                            class="badge {{ $room->status == 'Disewa' ? 'bg-success' : 'bg-danger' }}">
                                                             {{ $room->status }}
                                                         </span>
                                                     </td>
@@ -93,6 +93,14 @@
 
     </main>
     <!-- End #main -->
+
+    <script type="text/javascript">
+        var success = "{{ Session('success') }}";
+        var error = "{{ Session('error') }}";
+
+        console.log(success);
+        console.log(error);
+    </script>
 
     <!-- ======= Footer ======= -->
     <x-partial._footer />

@@ -1,7 +1,7 @@
 @props(['selectedUser'=> false])
 
 @if ($users->count())
-<option selected>Pilih Penghuni</option>
+<option value="" selected>Pilih Penghuni</option>
     @foreach ($users as $user)
         <option value="{{ $user->id }}" {{ $selectedUser == $user->id ? 'selected' : '' }}>{{ $user->name }} </option>
     @endforeach
