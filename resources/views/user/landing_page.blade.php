@@ -83,5 +83,5 @@
         </div>
     </div>
 
-    <x-partial._footer />
+    <x-partial._footerForLandingPage />
 </x-partial.base>
